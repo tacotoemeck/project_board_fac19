@@ -21,18 +21,43 @@ const getRepos = user =>
 const getColaborators = repo => fetch(repo).then(response => response.json());
 
 const selectRepo = (array, repo_name) => {
-  return array.filter(repo => repo.name === repo_name);
+  // create a main template here
+
+  let filterArray = array.filter(repo => repo.name === repo_name);
+  console.log(filterArray[0].url);
+  let docFrag = projectCardTemplate.content.cloneNode(true);
+  // project name
+  docFrag.querySelector(".projectCard").dataset.title = repo_name;
+  docFrag.querySelector(".projectCard_title").innerText = repo_name;
+  docFrag.querySelector(".projectCard_github").href = filterArray[0].html_url;
+
+  week1_project_board.appendChild(docFrag);
+  return filterArray;
 };
 
-const createUserThumbFromTemplate = arr => {
-  let docFrag = projectCardTemplate.content.cloneNode(true);
+const createUserThumbFromTemplate = (arr, repo_name) => {
+  // let docFrag = projectCardTemplate.content.cloneNode(true);
   arr.forEach(user => {
+    // create an image
+    let collaboratorsDiv = document.createElement("DIV");
+    collaboratorsDiv.classList.add("projectCard_colaborators--div");
     let thumbImg = document.createElement("img");
     thumbImg.src = user.avatar_url;
     thumbImg.classList.add("projectCard_colaborators--image");
-    docFrag.querySelector(".projectCard_colaborators").appendChild(thumbImg);
+    collaboratorsDiv.appendChild(thumbImg);
+    // create a hover on link
+    let thumbLink = document.createElement("a");
+    thumbLink.innerText = `link here`;
+    thumbLink.classList.add("projectCard_colaborators--link");
+    collaboratorsDiv.appendChild(thumbLink);
+    document
+      .querySelector(`[data-title=${repo_name}]`)
+      .children[2].appendChild(collaboratorsDiv);
+    // document
+    //   .querySelector(`[data-title=${repo_name}]`)
+    //   .children[2].appendChild(thumbLink);
   });
-  week1_project_board.appendChild(docFrag);
+  // week1_project_board.appendChild(docFrag);
 };
 
 // show collaborators for a given repository
@@ -42,19 +67,12 @@ function showCollaborators(name) {
     .then(getRepos)
     .then(repo_array => selectRepo(repo_array, name)[0].contributors_url)
     .then(getColaborators)
-    .then(array => createUserThumbFromTemplate(array))
+    .then(array => createUserThumbFromTemplate(array, name))
     .catch(console.error));
 }
 
 showCollaborators("week1-hklo");
-
-function createListItemUsingTemplate(textAreaContent) {
-  let docFrag = template.content.cloneNode(true);
-  docFrag.querySelector(
-    ".projectCard_colaborators"
-  ).textContent = textAreaContent;
-  listContainer.appendChild(docFrag);
-}
+showCollaborators("week1-cica");
 
 //
 
