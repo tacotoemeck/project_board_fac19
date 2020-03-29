@@ -61,6 +61,7 @@
   line-height: 15vw;
   opacity: 0;
   color: whitesmoke;
+  transition: all 0.3s ease 0s;
 }
 
 .projectCard_colaborators--div:hover .projectCard_colaborators--link {

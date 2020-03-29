@@ -1,7 +1,7 @@
 {
   "name": "project_board_fac19",
   "version": "1.0.0",
-  "description": "",
+  "description": "full stack application made for Founders and Coders FAC19. Displays all group projects and it's collaborators. ",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "type": "git",
     "url": "git+https://github.com/tacotoemeck/project_board_fac19.git"
   },
-  "author": "",
+  "author": "fac19",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tacotoemeck/project_board_fac19/issues"
