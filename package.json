@@ -1,19 +1,25 @@
 {
   "name": "project_board_fac19",
   "version": "1.0.0",
-  "description": "",
+  "description": "full stack application made for Founders and Coders FAC19. Displays all group projects and it's collaborators. ",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "startdev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tacotoemeck/project_board_fac19.git"
   },
-  "author": "",
+  "author": "fac19",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/tacotoemeck/project_board_fac19/issues"
   },
-  "homepage": "https://github.com/tacotoemeck/project_board_fac19#readme"
+  "homepage": "https://github.com/tacotoemeck/project_board_fac19#readme",
+  "dependencies": {
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.2"
+  }
 }
