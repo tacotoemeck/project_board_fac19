@@ -6,7 +6,6 @@ function submitPostHandler(req, res) {
   req.on("end", () => {
     const repo = new URLSearchParams(body);
     const repoObject = Object.fromEntries(repo);
-    console.log(repoObject);
     model
       .saveRepo(repoObject)
       .then(() => {
