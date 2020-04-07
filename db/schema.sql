@@ -1,22 +1,17 @@
 BEGIN;
 
-    DROP TABLE IF EXISTS projects, users
+    DROP TABLE IF EXISTS projects
     CASCADE;
 
-CREATE TABLE users
-(
-    id SERIAL PRIMARY KEY,
-    github_link VARCHAR(255) NOT NULL,
-    github_img VARCHAR(255) NOT NULL
-);
 
 CREATE TABLE projects
 (
     id SERIAL PRIMARY KEY,
+    week VARCHAR(255) NOT NULL,
     project_name VARCHAR(255) NOT NULL,
     project_screenshot VARCHAR(255) ,
     project_link VARCHAR(255) ,
-    collaborators INTEGER REFERENCES users(id)
+    collaborators TEXT
 );
 
 COMMIT;

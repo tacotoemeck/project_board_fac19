@@ -1,6 +1,3 @@
-// const models = require("../model.js");
-// // import { saveRepo } from "../model.js";
-
 let templateCollaboratorsDiv = document.getElementById(
   "projectCard_colaborators"
 );
@@ -38,7 +35,8 @@ const selectRepo = (array, repo_name) => {
 };
 
 const createUserThumbFromTemplate = (arr, repo_name) => {
-  // let docFrag = projectCardTemplate.content.cloneNode(true);
+  let projectCard_div = document.querySelector(`[data-title=${repo_name}]`)
+    .children[3];
   arr.forEach((user) => {
     // create a parent div
     let collaboratorsDiv = document.createElement("DIV");
@@ -55,9 +53,9 @@ const createUserThumbFromTemplate = (arr, repo_name) => {
     thumbLink.classList.add("projectCard_colaborators--link");
     collaboratorsDiv.appendChild(thumbLink);
     // append parent div
-    document
-      .querySelector(`[data-title=${repo_name}]`)
-      .children[2].appendChild(collaboratorsDiv);
+    console.log(collaboratorsDiv);
+    console.log(projectCard_div);
+    projectCard_div.appendChild(collaboratorsDiv);
   });
 };
 
@@ -78,6 +76,8 @@ let fetch_submit_button =
   document.querySelector("#projectNameForm__submit") || undefined;
 let addImage_submit_button =
   document.querySelector("#projectScreenshootForm__submit") || undefined;
+let addWeek_submit_button =
+  document.querySelector("#projectAddWeektForm__submit") || undefined;
 let add_repo_button = document.querySelector("#add_project_button");
 
 // fetch repo
@@ -94,10 +94,17 @@ addImage_submit_button.addEventListener("click", (event) => {
   projectCard_img.setAttribute("src", img_URL);
 });
 
+addWeek_submit_button.addEventListener("click", (event) => {
+  event.preventDefault();
+  let week = project_week.value;
+  document.querySelector(".projectCard_week").innerHTML = week;
+});
+
 // save project
 
 // create and object that can then be save into a database
 add_repo_button.addEventListener("click", (event) => {
+  let project_week = document.querySelector(".projectCard_week").innerHTML;
   let project_name = document.querySelector(".projectCard_title").innerHTML;
   let project_screenshot = document.querySelector(".projectCard_image").src;
   let project_link = document.querySelector(".projectCard_github").href;
@@ -107,6 +114,7 @@ add_repo_button.addEventListener("click", (event) => {
   // approach 1 - create an object
   // create a repo obj
   let repo_obj = {
+    project_week: project_week,
     project_name: project_name,
     project_screenshot: project_screenshot,
     project_collaborators: [],
@@ -136,6 +144,13 @@ function objToForm(obj) {
       input.type = "text";
       input.name = key;
       input.value = `${obj[key]}`;
+      form.appendChild(input);
+    }
+    if (obj.hasOwnProperty(key) && key === "project_collaborators") {
+      let input = document.createElement("input");
+      input.type = "text";
+      input.name = key;
+      input.value = `${JSON.stringify(obj[key])}`;
       form.appendChild(input);
     }
   }

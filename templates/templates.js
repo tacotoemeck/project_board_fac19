@@ -17,6 +17,7 @@ function sharedContent(content) {
       
     <template id="projectCardTemplate">
       <div class="projectCard">
+        <h3 class="projectCard_week"></h3>
         <h3 class="projectCard_title"></h3>
         <img class="projectCard_image" />
         <div class="projectCard_colaborators"></div>
@@ -31,70 +32,142 @@ function sharedContent(content) {
     `;
 }
 
-function mainPageContent() {
+function mainPageContent(projects_array) {
   return `
     <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 1</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
           Learning outcomes: ---insert here---
         </h3>
-        <div class="weekProjectDisplay_projectBoard"></div>
+        <div class="weekProjectDisplay_projectBoard">
+        ${projects_array.map((project) => {
+          if (project.week === "1") {
+            return showProject(project);
+          }
+        })}
+        </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 2</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
           Learning outcomes: ---insert here---
         </h3>
-        <div class="weekProjectDisplay_projectBoard"></div>
+        <div class="weekProjectDisplay_projectBoard">
+        ${projects_array.map((project) => {
+          if (project.week === "2") {
+            return showProject(project);
+          }
+        })}
+        </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 3</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
           Learning outcomes: ---insert here---
         </h3>
-        <div class="weekProjectDisplay_projectBoard"></div>
+        <div class="weekProjectDisplay_projectBoard">
+        ${projects_array.map((project) => {
+          if (project.week === "3") {
+            return showProject(project);
+          }
+        })}
+        </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 4</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
           Learning outcomes: ---insert here---
         </h3>
-        <div class="weekProjectDisplay_projectBoard"></div>
+        <div class="weekProjectDisplay_projectBoard">
+        ${projects_array.map((project) => {
+          if (project.week === "4") {
+            return showProject(project);
+          }
+        })}
+        </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 5</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
           Learning outcomes: ---insert here---
         </h3>
-        <div class="weekProjectDisplay_projectBoard"></div>
+        <div class="weekProjectDisplay_projectBoard">
+        ${projects_array.map((project) => {
+          if (project.week === "5") {
+            return showProject(project);
+          }
+        })}
+        </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 6</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
           Learning outcomes: ---insert here---
         </h3>
-        <div class="weekProjectDisplay_projectBoard"></div>
+        <div class="weekProjectDisplay_projectBoard">
+        ${projects_array.map((project) => {
+          if (project.week === "6") {
+            return showProject(project);
+          }
+        })}
+        </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 7</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
           Learning outcomes: ---insert here---
         </h3>
-        <div class="weekProjectDisplay_projectBoard"></div>
+        <div class="weekProjectDisplay_projectBoard">
+        ${projects_array.map((project) => {
+          if (project.week === "7") {
+            return showProject(project);
+          }
+        })}
+        </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 8</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
           Learning outcomes: ---insert here---
         </h3>
-        <div class="weekProjectDisplay_projectBoard"></div>
+        <div class="weekProjectDisplay_projectBoard">
+        ${projects_array.map((project) => {
+          if (project.week === "8") {
+            return showProject(project);
+          }
+        })}
+        </div>
       </section>
    
     `;
 }
 
-function mainPageDisplay() {
-  return sharedContent(mainPageContent());
+function mainPageDisplay(project_object) {
+  return sharedContent(mainPageContent(project_object));
+}
+
+// genereate projects
+
+function showProject(project_object) {
+  return `
+    <div class="projectCard">
+    <h3 class="projectCard_title">${project_object.project_name}</h3>
+    <img class="projectCard_image" src="${project_object.project_screenshot}"/>
+    <div class="projectCard_colaborators">${JSON.parse(
+      project_object.collaborators
+    ).map((collaborator) => showCollaborators(collaborator))}</div>
+    <a class="projectCard_github" href="${
+      project_object.project_link
+    }">SEE PROJECT'S REPO</a>
+  </div>
+    `;
+}
+
+function showCollaborators(collaborator) {
+  return `<div class="projectCard_colaborators--div">
+  <img src=${collaborator.github_img} class="projectCard_colaborators--image"/>
+  <a href=${collaborator.github_link} class="projectCard_colaborators--link">GITHUB</a>
+  </div>`;
 }
 
 // form page
@@ -113,38 +186,19 @@ function formFetchPage() {
     <form class="form" id="projectScreenshootForm">
         <label for="project_img">Add URL:</label>
         <input id="project_img" name="project_img" placeholder="add screenshoot URL" required>
-        <button class="form__button" id="projectScreenshootForm__submit" type="submit">FETCH</button>
+        <button class="form__button" id="projectScreenshootForm__submit" type="submit">ADD IMAGE</button>
+    </form>
+    <form class="form" id="projectAddWeekForm">
+        <label for="project_week">Add URL:</label>
+        <input id="project_week" name="project_week" placeholder="add screenshoot URL" required>
+        <button class="form__button" id="projectAddWeektForm__submit" type="submit">ADD WEEK</button>
     </form>
     <div class="weekProjectDisplay_projectBoard"></div>
     <button id="add_project_button">ADD!</button>
 </form>
 
     `;
-  //   <script src="./public/forms.js"></script>
 }
-
-// function checkRepoFormDisplay(arr) {
-//   //   return script.showRepo("week1-hklo").then((str) => {
-//   //     return ` <div id="images">
-//   //             ${str}
-//   //         </div>
-//   //     `;
-//   //   });
-//   return `
-//     <div id="images">
-//     ${arr}
-//     </div>
-//     <script>
-
-//     </script>
-//       `;
-// }
-
-// function showEachCollaborator(obj) {
-//   return `
-//     <img class="projectCard_colaborators--image" src="${obj.avatar_url}" />
-//     `;
-// }
 
 module.exports = {
   sharedContent,
