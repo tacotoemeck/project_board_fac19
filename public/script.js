@@ -1,3 +1,6 @@
+// const models = require("../model.js");
+// // import { saveRepo } from "../model.js";
+
 let templateCollaboratorsDiv = document.getElementById(
   "projectCard_colaborators"
 );
@@ -101,6 +104,7 @@ add_repo_button.addEventListener("click", (event) => {
   let project_collaborators = document.querySelectorAll(
     ".projectCard_colaborators--div"
   );
+  // approach 1 - create an object
   // create a repo obj
   let repo_obj = {
     project_name: project_name,
@@ -117,4 +121,25 @@ add_repo_button.addEventListener("click", (event) => {
     repo_obj.project_collaborators.push(collaborator_obj);
   });
   // add save to database logic
+  objToForm(repo_obj);
+  // approach 2 - create a form
 });
+
+function objToForm(obj) {
+  let form = document.createElement("form");
+  let body = document.querySelector("body");
+  form.method = "post";
+  form.action = "submit";
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key) && key !== "project_collaborators") {
+      let input = document.createElement("input");
+      input.type = "text";
+      input.name = key;
+      input.value = `${obj[key]}`;
+      form.appendChild(input);
+    }
+  }
+
+  body.appendChild(form);
+  form.submit();
+}

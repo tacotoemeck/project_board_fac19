@@ -4,6 +4,7 @@ const missingHandler = require("./handlers/missingHandler.js");
 const publicHandler = require("./handlers/publicHandler.js");
 const addRepoHandler = require("./handlers/formPageDisplay.js");
 const checkRepoHandler = require("./handlers/checkRepo.js");
+const submitPostHandler = require("./handlers/submitPost.js");
 
 function router(request, response) {
   const url = request.url;
