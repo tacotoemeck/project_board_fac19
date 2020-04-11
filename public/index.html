@@ -74,6 +74,32 @@
       </div>
     </template>
 
+    <div class="ProjectsForm">
+      <form class="ProjectsForm__form" id="projectNameForm">
+          <label for="project_name">Repository name:<span aria-hidden="true">*</span></label>
+          <div id="repositoryNameRequirements" class="ProjectsForm__form__requirements">Please make sure the spelling and letter sizes are EXACTLY the same as github repo title!</div>
+          <input id="project_name" name="project_name" placeholder="enter EXACT spelling from your github repo" aria-describedby="repositoryNameRequirements" required>
+          <button class="form__button" id="projectNameForm__submit" type="submit">FETCH</button>
+      </form>
+      <form class="ProjectsForm__form" id="projectScreenshootForm">
+          <label for="project_img">Add URL:<span aria-hidden="true">*</span></label>
+          <div id="screenshotNameRequirements" class="ProjectsForm__form__requirements">Please enter valid URL path of your screenshoot</div>
+          <input id="project_img" name="project_img" placeholder="add screenshoot URL" aria-describedby="screenshotNameRequirements" required>
+          <button class="form__button" id="projectScreenshootForm__submit" type="submit">ADD IMAGE</button>
+      </form>
+      <form class="ProjectsForm__form" id="projectAddWeekForm">
+          <label for="project_week">Add URL:<span aria-hidden="true">*</span></label>
+          <div id="screenshotNameRequirements" class="ProjectsForm__form__requirements">Please enter the week when project was completed</div>
+          <input id="project_week" name="project_week" placeholder="add screenshoot URL" aria-describedby="screenshotNameRequirements" required>
+          <button class="form__button" id="projectAddWeektForm__submit" type="submit">ADD WEEK</button>
+      </form>
+      <div class="weekProjectDisplay_projectBoard"></div>
+      <button id="add_project_button">ADD!</button>
+      </form>
+    </div>
+    <script type="module" src="./public/formValidator.js"></script>
     <script type="module" src="./public/script.js"></script>
   </body>
 </html>
+
+

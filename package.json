@@ -5,7 +5,8 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "startdev": "nodemon server.js"
+    "startdev": "nodemon server.js",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,9 @@
     "dotenv": "^8.2.0",
     "fetch": "^1.1.0",
     "node-fetch": "^2.6.0",
-    "nodemon": "^2.0.2",
     "pg": "^8.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }

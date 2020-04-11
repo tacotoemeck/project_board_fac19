@@ -1,3 +1,6 @@
+// const models = require("../model.js");
+// // import { saveRepo } from "../model.js";
+
 let templateCollaboratorsDiv = document.getElementById(
   "projectCard_colaborators"
 );
@@ -15,7 +18,10 @@ const getUser = (username) =>
 
 // Get desired repos
 const getRepos = (user) =>
-  fetch(user.repos_url).then((response) => response.json());
+  fetch(user.repos_url).then((response) => {
+    repo_fetched = true;
+    return response.json();
+  });
 
 const getColaborators = (repo) =>
   fetch(repo).then((response) => response.json());
@@ -23,7 +29,6 @@ const getColaborators = (repo) =>
 const selectRepo = (array, repo_name) => {
   // create a main template here
   let filterArray = array.filter((repo) => repo.name === repo_name);
-  console.log(filterArray[0].url);
   let docFrag = projectCardTemplate.content.cloneNode(true);
   // project name
   docFrag.querySelector(".projectCard").dataset.title = repo_name;
@@ -35,8 +40,7 @@ const selectRepo = (array, repo_name) => {
 };
 
 const createUserThumbFromTemplate = (arr, repo_name) => {
-  let projectCard_div = document.querySelector(`[data-title=${repo_name}]`)
-    .children[3];
+  // let docFrag = projectCardTemplate.content.cloneNode(true);
   arr.forEach((user) => {
     // create a parent div
     let collaboratorsDiv = document.createElement("DIV");
@@ -53,9 +57,9 @@ const createUserThumbFromTemplate = (arr, repo_name) => {
     thumbLink.classList.add("projectCard_colaborators--link");
     collaboratorsDiv.appendChild(thumbLink);
     // append parent div
-    console.log(collaboratorsDiv);
-    console.log(projectCard_div);
-    projectCard_div.appendChild(collaboratorsDiv);
+    document
+      .querySelector(`[data-title=${repo_name}]`)
+      .children[3].appendChild(collaboratorsDiv);
   });
 };
 
@@ -67,7 +71,10 @@ function showCollaborators(name) {
     .then((repo_array) => selectRepo(repo_array, name)[0].contributors_url)
     .then(getColaborators)
     .then((array) => createUserThumbFromTemplate(array, name))
-    .catch(console.error));
+    .catch((error) => {
+      repo_fetched = false;
+      console.error(error);
+    }));
 }
 
 // form functionality
@@ -83,30 +90,56 @@ let add_repo_button = document.querySelector("#add_project_button");
 // fetch repo
 fetch_submit_button.addEventListener("click", (event) => {
   event.preventDefault();
-  showCollaborators("week5-DGHP");
+  fetchFormValidator(event.target, showCollaborators);
 });
 
 // add image
 addImage_submit_button.addEventListener("click", (event) => {
   event.preventDefault();
   let img_URL = project_img.value;
-  let projectCard_img = document.querySelector(".projectCard_image");
-  projectCard_img.setAttribute("src", img_URL);
+  let projectCard_img_div = document.querySelector(".projectCard_image_div");
+  projectCard_img_div.classList.add("form_image_loader");
+  let new_img = new Image();
+  new_img.classList.add("projectCard_image_div_IMG");
+  new_img.onload = function () {
+    imgFormValidatorSuccess();
+  };
+  new_img.onerror = function () {
+    // if image doesn't load
+    imgFormValidatorFail();
+    new_img.src =
+      "https://stockpictures.io/wp-content/uploads/2020/01/image-not-found-big-768x432.png";
+  };
+  new_img.src = img_URL;
+
+  // check if the div is empty
+  if (!projectCard_img_div.hasChildNodes()) {
+    projectCard_img_div.appendChild(new_img);
+  } else {
+    // if it is remove current img ( showing url doesn't exist image )
+    projectCard_img_div.firstChild.remove();
+    // then add the found image
+    projectCard_img_div.appendChild(new_img);
+  }
 });
 
 addWeek_submit_button.addEventListener("click", (event) => {
   event.preventDefault();
   let week = project_week.value;
-  document.querySelector(".projectCard_week").innerHTML = week;
+  if (weekFormValidator(week)) {
+    document.querySelector(".projectCard_week").innerHTML = week;
+    document.getElementById("add_project_button").disabled = false;
+  }
 });
 
 // save project
 
 // create and object that can then be save into a database
-add_repo_button.addEventListener("click", (event) => {
+add_repo_button.addEventListener("click", () => {
   let project_week = document.querySelector(".projectCard_week").innerHTML;
   let project_name = document.querySelector(".projectCard_title").innerHTML;
-  let project_screenshot = document.querySelector(".projectCard_image").src;
+  let project_screenshot = document.querySelector(".projectCard_image_div_IMG")
+    .src;
   let project_link = document.querySelector(".projectCard_github").href;
   let project_collaborators = document.querySelectorAll(
     ".projectCard_colaborators--div"
