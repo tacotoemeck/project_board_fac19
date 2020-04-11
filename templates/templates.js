@@ -3,33 +3,32 @@
 function sharedContent(content) {
   return `
     <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Learn Fetch & Promises</title>
-    <link rel="stylesheet" href="./public/styles.css" />
-  </head>
-  <body>
-    <div class="container">
-    ${content}
-    </div>
-      
-    <template id="projectCardTemplate">
-      <div class="projectCard">
-        <h3 class="projectCard_week"></h3>
-        <h3 class="projectCard_title"></h3>
-        <img class="projectCard_image" />
-        <div class="projectCard_colaborators"></div>
-        <a class="projectCard_github" href="">SEE PROJECT'S REPO</a>
-      </div>
-    </template>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Learn Fetch & Promises</title>
+        <link rel="stylesheet" href="./public/styles.css" />
+      </head>
+      <body>
+        <div class="container">
+          ${content}
+        </div>
 
-    <script src="./public/script.js"></script>
-  </body>
-</html>
-
-    `;
+        <template id="projectCardTemplate">
+          <div class="projectCard">
+            <h3 class="projectCard_week"></h3>
+            <h3 class="projectCard_title"></h3>
+            <div class="projectCard_image_div"></div>
+            <div class="projectCard_colaborators"></div>
+            <a class="projectCard_github" href="">SEE PROJECT'S REPO</a>
+          </div>
+        </template>
+        <script src="./public/formValidator.js"></script>
+        <script src="./public/script.js"></script>
+      </body>
+    </html>
+  `;
 }
 
 function mainPageContent(projects_array) {
@@ -178,25 +177,31 @@ function showFormPage() {
 
 function formFetchPage() {
   return `
-    <form class="form" id="projectNameForm">
-        <label for="project_name">Repository name:</label>
-        <input id="project_name" name="project_name" placeholder="enter EXACT spelling from your github repo" required>
-        <button class="form__button" id="projectNameForm__submit" type="submit">FETCH</button>
-    </form>
-    <form class="form" id="projectScreenshootForm">
-        <label for="project_img">Add URL:</label>
-        <input id="project_img" name="project_img" placeholder="add screenshoot URL" required>
-        <button class="form__button" id="projectScreenshootForm__submit" type="submit">ADD IMAGE</button>
-    </form>
-    <form class="form" id="projectAddWeekForm">
-        <label for="project_week">Add URL:</label>
-        <input id="project_week" name="project_week" placeholder="add screenshoot URL" required>
-        <button class="form__button" id="projectAddWeektForm__submit" type="submit">ADD WEEK</button>
-    </form>
-    <div class="weekProjectDisplay_projectBoard"></div>
-    <button id="add_project_button">ADD!</button>
-</form>
-
+  <div class="ProjectsForm">
+  <form class="ProjectsForm__form" id="projectNameForm">
+      <label for="project_name">Repository name:<span aria-hidden="true">*</span></label>
+      <div id="repositoryNameRequirements" class="ProjectsForm__form__requirements">Please make sure the spelling and letter sizes are EXACTLY the same as github repo title!</div>
+      <input id="project_name" name="project_name" placeholder="enter EXACT spelling from your github repo" aria-describedby="repositoryNameRequirements" required>
+      <div id="project_name--error"></div>
+      <button class="form__button" id="projectNameForm__submit" type="submit">FETCH</button>
+  </form>
+  <form class="ProjectsForm__form hiddenForm" id="projectScreenshootForm">
+      <label for="project_img">Add URL:<span aria-hidden="true">*</span></label>
+      <div id="screenshotNameRequirements" class="ProjectsForm__form__requirements">Please enter valid URL path of your screenshoot</div>
+      <input id="project_img" name="project_img" placeholder="add screenshoot URL" aria-describedby="screenshotNameRequirements" minlength="4" required>
+      <div id="project_img--error"></div>
+      <button class="form__button" id="projectScreenshootForm__submit" type="submit">ADD IMAGE</button>
+  </form>
+  <form class="ProjectsForm__form hiddenForm" id="projectAddWeekForm">
+      <label for="project_week">Add URL:<span aria-hidden="true">*</span></label>
+      <div id="screenshotNameRequirements" class="ProjectsForm__form__requirements">Please enter the week when project was completed</div>
+      <input id="project_week" name="project_week" placeholder="what week? - must be a number!" aria-describedby="screenshotNameRequirements" required >
+      <div id="project_week--error"></div>
+      <button class="form__button" id="projectAddWeektForm__submit" type="submit" >ADD WEEK</button>
+  </form>
+  <div class="weekProjectDisplay_projectBoard"></div>
+</div>
+<button id="add_project_button" disabled>ADD!</button>
     `;
 }
 

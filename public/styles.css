@@ -1,4 +1,13 @@
 /* mobile first */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
 .weekProjectDisplay {
   width: 100vw;
   display: flex;
@@ -11,19 +20,40 @@
 .projectCard {
   width: 100%;
   text-align: center;
-  width: 80vw;
+  background-color: white;
 }
 
+.projectCard_image_div,
 .projectCard_image {
-  /* temporarly */
-  height: 200px;
-  /* width: 100vw; */
-  width: 100%;
+  height: 58vw;
+  width: 100vw;
   background-color: darkgrey;
+  object-fit: cover;
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) {
+  .projectCard_image_div,
+  .projectCard_image {
+    width: 60vw;
+    height: 35vw;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  .projectCard_image_div,
+  .projectCard_image {
+    width: 50vw;
+    height: 29vw;
+  }
+}
+
+.projectCard_image_div_IMG {
+  width: 100%;
+  object-fit: contain;
 }
 
 .projectCard_colaborators {
-  /* old */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -33,15 +63,16 @@
 
 .projectCard_colaborators--div {
   position: relative;
+  width: 15%;
+  height: 15%;
   padding: 0;
-  /* width: 300px; */
   cursor: pointer;
   overflow: hidden;
 }
 
 .projectCard_colaborators--image {
-  width: 15vw;
-  height: 15vw;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   filter: grayscale(0);
   transition: all 0.3s ease 0s;
@@ -72,7 +103,7 @@
 /* github link button */
 
 .projectCard_github {
-  width: 80vw;
+  width: 100%;
   box-sizing: border-box;
   border: none;
   background: #404040;
@@ -84,14 +115,70 @@
   display: inline-block;
   text-align: center;
   transition: all 0.3s ease 0s;
+  text-decoration: none;
 }
 
 .projectCard_github:hover {
   color: #404040 !important;
-  font-weight: 700 !important;
-  letter-spacing: 3px;
   background: none;
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
-  transition: all 0.3s ease 0s;
+}
+
+/* form */
+
+.ProjectsForm {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+}
+
+.ProjectsForm__form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ProjectsForm__form > * {
+  padding: 0.2rem;
+  margin: 0.6rem;
+}
+
+.hiddenForm {
+  display: none;
+}
+
+.form_validation_fail {
+  color: red;
+}
+
+.form_validation_success {
+  color: green;
+}
+
+.form_image_loader {
+  background-image: url("https://createwebsite.net/wp-content/uploads/2015/09/Preload.gif");
+  background-size: cover;
+}
+
+.weekProjectDisplay_projectBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) {
+  .ProjectsForm {
+    width: 60vw;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  .ProjectsForm {
+    width: 80vw;
+    flex-direction: row;
+  }
+  .ProjectsForm__form {
+    max-width: 30vw;
+  }
 }
