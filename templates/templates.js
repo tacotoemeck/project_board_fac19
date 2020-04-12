@@ -137,7 +137,6 @@ function mainPageContent(projects_array) {
         })}
         </div>
       </section>
-   
     `;
 }
 
@@ -151,13 +150,13 @@ function showProject(project_object) {
   return `
     <div class="projectCard">
     <h3 class="projectCard_title">${project_object.project_name}</h3>
-    <img class="projectCard_image" src="${project_object.project_screenshot}"/>
+    <img class="projectCard_image" src=${project_object.project_screenshot}/>
     <div class="projectCard_colaborators">${JSON.parse(
       project_object.collaborators
     ).map((collaborator) => showCollaborators(collaborator))}</div>
-    <a class="projectCard_github" href="${
+    <a class="projectCard_github" href=${
       project_object.project_link
-    }">SEE PROJECT'S REPO</a>
+    }>SEE PROJECT'S REPO</a>
   </div>
     `;
 }
@@ -202,7 +201,7 @@ function formFetchPage() {
   <div class="weekProjectDisplay_projectBoard"></div>
 </div>
 <button id="add_project_button" disabled>ADD!</button>
-    `;
+`;
 }
 
 module.exports = {

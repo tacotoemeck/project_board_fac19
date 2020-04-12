@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  min-height: 100vh;
 }
 
 .weekProjectDisplay {
@@ -14,6 +15,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.weekProjectDisplay_projectBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* template card */
@@ -43,8 +51,13 @@
 @media only screen and (min-width: 1224px) {
   .projectCard_image_div,
   .projectCard_image {
-    width: 50vw;
-    height: 29vw;
+    width: 24vw;
+    height: 14vw;
+  }
+  .weekProjectDisplay_projectBoard {
+    flex-direction: row;
+    /* display: grid;
+    grid-template-columns: 24vw 24vw 24vw 24vw; */
   }
 }
 
@@ -57,8 +70,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-
-  /* testing below */
 }
 
 .projectCard_colaborators--div {
@@ -130,12 +141,16 @@
   flex-direction: column;
   background-color: black;
   color: white;
+  min-height: 60vh;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
 .ProjectsForm__form {
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .ProjectsForm__form > * {
@@ -158,12 +173,6 @@
 .form_image_loader {
   background-image: url("https://createwebsite.net/wp-content/uploads/2015/09/Preload.gif");
   background-size: cover;
-}
-
-.weekProjectDisplay_projectBoard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /* iPads (portrait) ----------- */

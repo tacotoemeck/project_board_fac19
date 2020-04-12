@@ -18,7 +18,8 @@ const getUser = (username) =>
 
 // Get desired repos
 const getRepos = (user) =>
-  fetch(user.repos_url).then((response) => {
+  // "?page=1&per_page=100" - this needs to be added to the url so it returns more than default 30 results
+  fetch(user.repos_url + "?page=1&per_page=100").then((response) => {
     repo_fetched = true;
     return response.json();
   });
@@ -28,6 +29,7 @@ const getColaborators = (repo) =>
 
 const selectRepo = (array, repo_name) => {
   // create a main template here
+  console.log(array);
   let filterArray = array.filter((repo) => repo.name === repo_name);
   let docFrag = projectCardTemplate.content.cloneNode(true);
   // project name
@@ -67,7 +69,10 @@ const createUserThumbFromTemplate = (arr, repo_name) => {
 function showCollaborators(name) {
   let result;
   return (result = getUser("fac19")
-    .then(getRepos)
+    .then((res) => {
+      console.log(res);
+      return getRepos(res);
+    })
     .then((repo_array) => selectRepo(repo_array, name)[0].contributors_url)
     .then(getColaborators)
     .then((array) => createUserThumbFromTemplate(array, name))
