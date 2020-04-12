@@ -6,7 +6,6 @@ function checkRepoHandler(req, res) {
   req.on("end", () => {
     const repo = new URLSearchParams(body);
     const repoObj = Object.fromEntries(repo);
-    console.log(repoObj);
 
     res.writeHead(200, { "content-type": "text/html" });
     res.end(
