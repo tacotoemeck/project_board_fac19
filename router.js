@@ -6,6 +6,7 @@ const addRepoHandler = require("./handlers/formPageDisplay.js");
 const checkRepoHandler = require("./handlers/checkRepo.js");
 const submitPostHandler = require("./handlers/submitPost.js");
 const loginGetHandler = require("./handlers/loginGet");
+const loginPostHandler = require("./handlers/loginPost");
 
 function router(request, response) {
   const url = request.url;
@@ -23,6 +24,8 @@ function router(request, response) {
     submitPostHandler(request, response);
   } else if (url === "/login" && method === "GET") {
     loginGetHandler(request, response);
+  } else if (url === "/login" && method === "POST") {
+    loginPostHandler(request, response);
   } else if (url.includes("public")) {
     publicHandler(request, response);
   } else {
