@@ -22,4 +22,10 @@ function saveRepo(repo) {
   );
 }
 
-module.exports = { saveRepo, getRepo };
+function getUser(user) {
+  return db
+    .query("SELECT * FROM users WHERE username = ($1);", [user])
+    .then((res) => res.rows[0]);
+}
+
+module.exports = { saveRepo, getRepo, getUser };

@@ -204,8 +204,36 @@ function formFetchPage() {
 `;
 }
 
+function loginPage() {
+  return sharedContent(
+    `
+      <form class="form" action="login" method="POST">
+        <label for="login_username"> Username:  <span aria-hidden="true">*</span> </label>
+        <input
+          id="login_username"
+          name="login_username"
+          placeholder="Username please"
+          required
+        />
+        <label for="login_password"> Password:<span aria-hidden="true">*</span> </label>
+        <input
+          id="login_password"
+          name="login_password"
+          placeholder="Hidden password, I see you..."
+          required
+        />
+        <button class="form__button" type="submit">
+          login </button> </form >
+        </button>
+      </form>
+    `,
+    `<a href="/" class="navbar__links" aria-label="Go back to Home">Home</a>`
+  );
+}
+
 module.exports = {
   sharedContent,
   mainPageDisplay,
   showFormPage,
+  loginPage,
 };
