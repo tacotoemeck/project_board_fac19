@@ -2,6 +2,7 @@ const forms = document.querySelectorAll(".ProjectsForm__form");
 const repoNameErrorMessage = document.querySelector("#project_name--error");
 const imgErrorMessage = document.querySelector("#project_img--error");
 const weekErrorMessage = document.querySelector("#project_week--error");
+
 let repo_fetched = false;
 
 // make all input fields invalid

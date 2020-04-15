@@ -204,10 +204,11 @@ function formFetchPage() {
 `;
 }
 
-function loginPage() {
+function loginPage(message) {
   return sharedContent(
     `
-      <form class="form" action="login" method="POST">
+      <form class="loginForm" action="login" method="POST">
+        <h2 class="form">Admin login</h2>
         <label for="login_username"> Username:  <span aria-hidden="true">*</span> </label>
         <input
           id="login_username"
@@ -220,8 +221,12 @@ function loginPage() {
           id="login_password"
           name="login_password"
           placeholder="Hidden password, I see you..."
+          type="password"
           required
         />
+        <div id="loginForm--error" class="form_validation_fail">${
+          message || ""
+        }</div>
         <button class="form__button" type="submit">
           login </button> </form >
         </button>
