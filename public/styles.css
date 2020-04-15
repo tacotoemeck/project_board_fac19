@@ -134,7 +134,7 @@
   background: none;
 }
 
-/* form */
+/* login form */
 
 .ProjectsForm {
   display: flex;
@@ -189,5 +189,65 @@
   }
   .ProjectsForm__form {
     max-width: 30vw;
+  }
+}
+
+/* loginForm */
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  background-color: black;
+  color: whitesmoke;
+  padding: 4rem;
+  border-radius: 10px;
+}
+
+.loginForm > * {
+  padding: 1rem;
+}
+
+.loginForm button {
+  margin-top: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-color: whitesmoke;
+  color: black;
+  transition: 0.2s ease-in-out;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+}
+
+.loginForm button:hover {
+  background-color: black;
+  color: whitesmoke;
+  border: 2px solid whitesmoke;
+}
+
+#loginForm--error {
+  min-height: 1rem;
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 80vw;
+    padding: 4rem;
+  }
+  .navbar_title {
+    font-size: 1.4rem;
+  }
+
+  .navbar__links {
+    padding: 0.9rem;
+    font-size: 1.2rem;
+  }
+  .loginForm {
+    width: 60%;
+    padding: 5rem;
   }
 }

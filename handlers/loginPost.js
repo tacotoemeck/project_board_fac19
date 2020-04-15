@@ -4,6 +4,7 @@ const getBody = require("../getBody");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const secret = process.env.SECRET;
+const templates = require("../templates/templates");
 
 function loginPostHandler(request, response) {
   getBody(request).then((body) => {
@@ -18,8 +19,12 @@ function loginPostHandler(request, response) {
         bcrypt
           .compare(password, dbUser.user_password)
           .then((match) => {
-            if (!match) throw new Error("Password does not match!");
-            console.log("Great! You have succeeded!");
+            if (!match) {
+              response.writeHead(401, {
+                "content-type": "text/html",
+              });
+              response.end(templates.loginPage("Password does not match"));
+            }
             const cookie = jwt.sign(
               {
                 id: dbID,
@@ -36,16 +41,16 @@ function loginPostHandler(request, response) {
           })
           .catch((err) => {
             response.writeHead(401, {
-              "content-type": "text/plain",
+              "content-type": "text/html",
             });
-            response.end(err.message);
+            response.end(templates.loginPage(err));
           });
       })
       .catch((err) => {
         response.writeHead(401, {
-          "content-type": "text/plain",
+          "content-type": "text/html",
         });
-        response.end("User not found");
+        response.end(templates.loginPage("User does not match"));
       });
   });
 }
