@@ -6,7 +6,7 @@ const types = {
   css: "text/css",
   js: "application/javascript",
   jpg: "image/jpeg",
-  ico: "image/x-icon"
+  ico: "image/x-icon",
 };
 
 function publicHandler(request, response) {
@@ -15,7 +15,6 @@ function publicHandler(request, response) {
   const extension = urlArray[1];
   const type = types[extension];
   const filePath = path.join(__dirname, "..", url);
-  console.log(filePath);
   fs.readFile(filePath, (error, file) => {
     if (error) {
       console.log(error);

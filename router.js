@@ -18,7 +18,11 @@ function router(request, response) {
   if (url === "/" && method === "DELETE") {
     deleteHandler(request, response);
   } else if (url === "/") {
-    homeHandler(request, response);
+    if (!authorization.checkIfAdminIsLoggedIn(request)) {
+      homeHandler(request, response, false);
+    } else {
+      homeHandler(request, response, true);
+    }
   } else if (url === "/addRepo" && method === "GET") {
     // verify if admin
     authorization.checkIfAdminIsLoggedIn(request);
@@ -32,7 +36,11 @@ function router(request, response) {
     authorization.checkIfAdminIsLoggedIn(request);
     authorization.verifyPassword(request, response, submitPostHandler);
   } else if (url === "/login" && method === "GET") {
-    loginGetHandler(request, response);
+    if (!authorization.checkIfAdminIsLoggedIn(request)) {
+      loginGetHandler(request, response, false);
+    } else {
+      loginGetHandler(request, response, true);
+    }
   } else if (url === "/login" && method === "POST") {
     loginPostHandler(request, response);
   } else if (url === "/logout") {

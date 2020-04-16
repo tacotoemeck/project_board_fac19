@@ -1,6 +1,6 @@
 // const script = require("../public/fetchAPI");
 
-function sharedContent(content) {
+function sharedContent(content, loggedIn) {
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -9,8 +9,16 @@ function sharedContent(content) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Learn Fetch & Promises</title>
         <link rel="stylesheet" href="./public/styles.css" />
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
       </head>
       <body>
+        <nav class="navbar">
+          <div class="navbar__logo>">logo here</div>
+          <div class="navbar__links">
+        ${authNavLinksDisplay(loggedIn)}
+          </div>
+        </nav>
+
         <div class="container">
           ${content}
         </div>
@@ -140,8 +148,8 @@ function mainPageContent(projects_array) {
     `;
 }
 
-function mainPageDisplay(project_object) {
-  return sharedContent(mainPageContent(project_object));
+function mainPageDisplay(project_object, loggedIn) {
+  return sharedContent(mainPageContent(project_object), loggedIn);
 }
 
 // genereate projects
@@ -204,7 +212,7 @@ function formFetchPage() {
 `;
 }
 
-function loginPage(message) {
+function loginPage(message, loggedIn) {
   return sharedContent(
     `
       <form class="loginForm" action="login" method="POST">
@@ -231,9 +239,22 @@ function loginPage(message) {
           login </button> </form >
         </button>
       </form>
-    `,
-    `<a href="/" class="navbar__links" aria-label="Go back to Home">Home</a>`
+      <a href="/" class="navbar__links" aria-label="Go back to Home">Home</a>`,
+    loggedIn
   );
+}
+
+function authNavLinksDisplay(authorized) {
+  console.log(authorized);
+  if (authorized) {
+    return `
+    <a class="navbar__links--link" href="/logout">Logout</a>
+    `;
+  } else {
+    return `
+    <a class="navbar__links--link" href="/login">Login</a>
+    `;
+  }
 }
 
 module.exports = {

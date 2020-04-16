@@ -1,4 +1,16 @@
+/* root variables */
+
+:root {
+  --main: rgb(236, 172, 94);
+  --secondary-dark: rgb(9, 3, 1);
+  --secondary-bright: rgb(231, 228, 225);
+}
+
 /* mobile first */
+
+.html {
+  margin-top: 3rem;
+}
 
 .container {
   display: flex;
@@ -7,6 +19,47 @@
   align-items: center;
   align-content: center;
   min-height: 100vh;
+  font-family: "Lato", sans-serif;
+}
+
+/* navbar */
+
+.navbar {
+  position: fixed;
+  width: 100vw;
+  background-color: var(--secondary-dark);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+  z-index: 2;
+  font-family: "Lato", sans-serif;
+}
+
+.navbar__links > * {
+  color: var(--secondary-bright);
+  margin-right: 3rem;
+  border: none;
+}
+
+.navbar__links--link {
+  width: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: var(--secondary-dark);
+  color: var(--secondary-bright);
+  transition: 0.2s ease-in-out;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+
+.navbar__links--link:hover {
+  background-color: var(--secondary-bright);
+  color: var(--secondary-dark);
+  padding: 0.35rem;
+  border: 0.1rem solid var(--secondary-dark);
 }
 
 .weekProjectDisplay {
@@ -242,10 +295,10 @@
     font-size: 1.4rem;
   }
 
-  .navbar__links {
+  /* .navbar__links {
     padding: 0.9rem;
     font-size: 1.2rem;
-  }
+  } */
   .loginForm {
     width: 60%;
     padding: 5rem;
