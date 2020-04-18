@@ -15,7 +15,25 @@ function sharedContent(content, loggedIn) {
         <nav class="navbar">
           <div class="navbar__logo>">logo here</div>
           <div class="navbar__links">
-        ${authNavLinksDisplay(loggedIn)}
+            <button class="navbar__links__menuButton"> ☰ MENU </button>
+          </div>
+          <div class="navbar_toggleMenu hidden">
+            <h3>Learning outcome</h3>
+              <ul>
+                <li><a class="navbar__links--link" href="#">HTML/CSS</a></li>
+                <li><a class="navbar__links--link" href="#">Fetch/API's/A'sync</a></li>
+                <li><a class="navbar__links--link" href="#">DOM manipulation/Tests</a></li>
+                <li><a class="navbar__links--link" href="#">Node Servers</a></li>
+                <li><a class="navbar__links--link" href="#">PosgreSQL</a></li>
+                <li><a class="navbar__links--link" href="#">Authentication</a></li>
+                <li><a class="navbar__links--link" href="#">RESTful API</a></li>
+                <li><a class="navbar__links--link" href="#">Full-Stack App</a></li>
+              </ul>
+              <hr>
+              <h3>admin</h3>
+              <ul>
+                <li> ${authNavLinksDisplay(loggedIn)} </li>
+              </ul>
           </div>
         </nav>
 
@@ -34,6 +52,7 @@ function sharedContent(content, loggedIn) {
         </template>
         <script src="./public/formValidator.js"></script>
         <script src="./public/script.js"></script>
+        <script src="./public/toggleMenu.js"></script>
       </body>
     </html>
   `;
@@ -245,7 +264,6 @@ function loginPage(message, loggedIn) {
 }
 
 function authNavLinksDisplay(authorized) {
-  console.log(authorized);
   if (authorized) {
     return `
     <a class="navbar__links--link" href="/logout">Logout</a>
