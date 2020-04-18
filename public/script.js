@@ -58,7 +58,7 @@ const createUserThumbFromTemplate = (arr, repo_name) => {
     thumbLink.setAttribute("href", `${user.html_url}`);
     thumbLink.classList.add("projectCard_colaborators--link");
     collaboratorsDiv.appendChild(thumbLink);
-    // append parent div
+    // append parent div ,
     document
       .querySelector(`[data-title=${repo_name}]`)
       .children[3].appendChild(collaboratorsDiv);

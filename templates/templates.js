@@ -66,11 +66,13 @@ function mainPageContent(projects_array) {
           Learning outcomes: ---insert here---
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "1") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "1") {
+              return showProject(project);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
@@ -79,11 +81,13 @@ function mainPageContent(projects_array) {
           Learning outcomes: ---insert here---
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "2") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "2") {
+              return showProject(project);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
@@ -92,11 +96,13 @@ function mainPageContent(projects_array) {
           Learning outcomes: ---insert here---
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "3") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "3") {
+              return showProject(project);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
@@ -105,11 +111,13 @@ function mainPageContent(projects_array) {
           Learning outcomes: ---insert here---
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "4") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "4") {
+              return showProject(project);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
@@ -118,11 +126,13 @@ function mainPageContent(projects_array) {
           Learning outcomes: ---insert here---
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "5") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "5") {
+              return showProject(project);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
@@ -131,11 +141,13 @@ function mainPageContent(projects_array) {
           Learning outcomes: ---insert here---
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "6") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "6") {
+              return showProject(project);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
@@ -144,11 +156,13 @@ function mainPageContent(projects_array) {
           Learning outcomes: ---insert here---
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "7") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "7") {
+              return showProject(project);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
@@ -157,11 +171,13 @@ function mainPageContent(projects_array) {
           Learning outcomes: ---insert here---
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "8") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "8") {
+              return showProject(project);
+            }
+          })
+          .join("")}
         </div>
       </section>
     `;
@@ -180,7 +196,9 @@ function showProject(project_object) {
     <img class="projectCard_image" src=${project_object.project_screenshot}/>
     <div class="projectCard_colaborators">${JSON.parse(
       project_object.collaborators
-    ).map((collaborator) => showCollaborators(collaborator))}</div>
+    )
+      .map((collaborator) => showCollaborators(collaborator))
+      .join("")}</div>
     <a class="projectCard_github" href=${
       project_object.project_link
     }>SEE PROJECT'S REPO</a>
