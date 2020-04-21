@@ -9,31 +9,45 @@ function sharedContent(content, loggedIn) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Learn Fetch & Promises</title>
         <link rel="stylesheet" href="./public/styles.css" />
-        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <link
+          href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
+          rel="stylesheet"
+        />
       </head>
       <body>
         <nav class="navbar">
-          <div class="navbar__logo>">logo here</div>
+          <div class="navbar__logo">FAC</div>
           <div class="navbar__links">
-            <button class="navbar__links__menuButton"> ☰ MENU </button>
+            <button class="navbar__links__menuButton">☰ MENU</button>
           </div>
           <div class="navbar_toggleMenu hidden">
             <h3>Learning outcome</h3>
-              <ul>
-                <li><a class="navbar__links--link" href="#">HTML/CSS</a></li>
-                <li><a class="navbar__links--link" href="#">Fetch/API's/A'sync</a></li>
-                <li><a class="navbar__links--link" href="#">DOM manipulation/Tests</a></li>
-                <li><a class="navbar__links--link" href="#">Node Servers</a></li>
-                <li><a class="navbar__links--link" href="#">PosgreSQL</a></li>
-                <li><a class="navbar__links--link" href="#">Authentication</a></li>
-                <li><a class="navbar__links--link" href="#">RESTful API</a></li>
-                <li><a class="navbar__links--link" href="#">Full-Stack App</a></li>
-              </ul>
-              <hr>
-              <h3>admin</h3>
-              <ul>
-                <li> ${authNavLinksDisplay(loggedIn)} </li>
-              </ul>
+            <ul>
+              <li><a class="navbar__links--link" href="#">HTML/CSS</a></li>
+              <li>
+                <a class="navbar__links--link" href="#">Fetch/API's/A'sync</a>
+              </li>
+              <li>
+                <a class="navbar__links--link" href="#"
+                  >DOM manipulation</a
+                >
+              </li>
+              <li><a class="navbar__links--link" href="#">Node Servers</a></li>
+              <li><a class="navbar__links--link" href="#">PosgreSQL</a></li>
+              <li>
+                <a class="navbar__links--link" href="#">Authentication</a>
+              </li>
+              <li><a class="navbar__links--link" href="#">RESTful API</a></li>
+              <li>
+                <a class="navbar__links--link" href="#">Full-Stack App</a>
+              </li>
+            </ul>
+            <hr />
+            <h3>admin</h3>
+            <ul>
+              <li>${authNavLinksDisplay(loggedIn)}</li>
+              <li><a class="navbar__links--link" href="addRepo">Add New</a></li>
+            </ul>
           </div>
         </nav>
 
@@ -46,7 +60,8 @@ function sharedContent(content, loggedIn) {
             <h3 class="projectCard_week"></h3>
             <h3 class="projectCard_title"></h3>
             <div class="projectCard_image_div"></div>
-            <div class="projectCard_colaborators"></div>
+            <div class="projectCard_imageLink_description" id="image_link_description">Click on user's image to visit their github profile.</div>
+            <div class="projectCard_colaborators" aria-describedby="image_link_description"></div>
             <a class="projectCard_github" href="">SEE PROJECT'S REPO</a>
           </div>
         </template>
@@ -58,140 +73,162 @@ function sharedContent(content, loggedIn) {
   `;
 }
 
-function mainPageContent(projects_array) {
+function mainPageContent(projects_array, authorized) {
   return `
     <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 1</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
-          Learning outcomes: ---insert here---
+        HTML/CSS
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "1") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "1") {
+              return showProject(project, authorized);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 2</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
-          Learning outcomes: ---insert here---
+        Fetch/API's/A'sync
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "2") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "2") {
+              return showProject(project, authorized);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 3</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
-          Learning outcomes: ---insert here---
+        DOM manipulation/Tests
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "3") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "3") {
+              return showProject(project, authorized);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 4</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
-          Learning outcomes: ---insert here---
+        Node Servers
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "4") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "4") {
+              return showProject(project, authorized);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 5</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
-          Learning outcomes: ---insert here---
+        PosgreSQL
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "5") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "5") {
+              return showProject(project, authorized);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 6</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
-          Learning outcomes: ---insert here---
+        Authentication
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "6") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "6") {
+              return showProject(project, authorized);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 7</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
-          Learning outcomes: ---insert here---
+        RESTful API
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "7") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "7") {
+              return showProject(project, authorized);
+            }
+          })
+          .join("")}
         </div>
       </section>
       <section class="weekProjectDisplay">
         <h2 class="weekProjectDisplay_heading">week 8</h2>
         <h3 class="weekProjectDisplay_learningOutcomes">
-          Learning outcomes: ---insert here---
+        Full-Stack App
         </h3>
         <div class="weekProjectDisplay_projectBoard">
-        ${projects_array.map((project) => {
-          if (project.week === "8") {
-            return showProject(project);
-          }
-        })}
+        ${projects_array
+          .map((project) => {
+            if (project.week === "8") {
+              return showProject(project, authorized);
+            }
+          })
+          .join("")}
         </div>
       </section>
     `;
 }
 
 function mainPageDisplay(project_object, loggedIn) {
-  return sharedContent(mainPageContent(project_object), loggedIn);
+  return sharedContent(mainPageContent(project_object, loggedIn), loggedIn);
 }
 
 // genereate projects
 
-function showProject(project_object) {
+function showProject(project_object, authorized) {
   return `
     <div class="projectCard">
     <h3 class="projectCard_title">${project_object.project_name}</h3>
     <img class="projectCard_image" src=${project_object.project_screenshot}/>
+    <div class="projectCard_imageLink_description" id="image_link_description">Click on user's image to visit their github profile.</div>
     <div class="projectCard_colaborators">${JSON.parse(
       project_object.collaborators
-    ).map((collaborator) => showCollaborators(collaborator))}</div>
+    )
+      .map((collaborator) => showCollaborators(collaborator))
+      .join("")}</div>
     <a class="projectCard_github" href=${
       project_object.project_link
     }>SEE PROJECT'S REPO</a>
+    ${displayDeleteButtonForAdminOnly(project_object.id, authorized)}
   </div>
     `;
 }
 
 function showCollaborators(collaborator) {
   return `<div class="projectCard_colaborators--div">
+ 
+  <a href=${collaborator.github_link} class="projectCard_colaborators--link"> 
   <img src=${collaborator.github_img} class="projectCard_colaborators--image"/>
-  <a href=${collaborator.github_link} class="projectCard_colaborators--link">GITHUB</a>
+  </a>
   </div>`;
 }
 
@@ -226,8 +263,9 @@ function formFetchPage() {
       <button class="form__button" id="projectAddWeektForm__submit" type="submit" >ADD WEEK</button>
   </form>
   <div class="weekProjectDisplay_projectBoard"></div>
+  <button id="add_project_button" disabled>ADD!</button>
 </div>
-<button id="add_project_button" disabled>ADD!</button>
+
 `;
 }
 
@@ -273,6 +311,14 @@ function authNavLinksDisplay(authorized) {
     <a class="navbar__links--link" href="/login">Login</a>
     `;
   }
+}
+
+function displayDeleteButtonForAdminOnly(id, authorized) {
+  if (authorized) {
+    return ` <form  action="/delete-project?id=${id}" method="POST">
+    <input class="projectCard__delete_button" aria-label="delete this project" type="submit" value="🗑️" />
+    </form>`;
+  } else return "";
 }
 
 module.exports = {

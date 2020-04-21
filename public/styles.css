@@ -9,28 +9,46 @@
 
 /* mobile first */
 
-.html {
+html {
   margin-top: 3rem;
+  left: 0;
+  font-size: 13px;
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) {
+  .html {
+    font-size: 15px;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  .html {
+    font-size: 16px;
+  }
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   align-content: center;
   min-height: 100vh;
-  width: 100vw;
+
   font-family: "Lato", sans-serif;
-  padding-top: 5rem;
+  /* padding-top: 2rem; */
+  /* background-color: var(--secondary-bright); */
+  left: 0;
 }
 
 /* iPads (portrait) ----------- */
-/* @media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   .container {
-    padding: 4rem;
+    padding-top: 2rem;
+    /* justify-content: center; */
   }
-} */
+}
 
 /* navbar */
 
@@ -45,6 +63,10 @@
   padding: 0.5rem;
   z-index: 2;
   font-family: "Lato", sans-serif;
+}
+
+.navbar__logo {
+  color: white;
 }
 
 .navbar__links__menuButton {
@@ -89,7 +111,7 @@
   right: 0;
   margin-top: 2.9rem;
   text-align: center;
-  margin-right: 1rem;
+
   /* visibility: visible;
   opacity: 1;
   transition: visibility 0s, opacity 0.1s ease-in; */
@@ -125,6 +147,7 @@
 @media only screen and (min-width: 768px) {
   .navbar_toggleMenu {
     width: 50%;
+    margin-right: 1rem;
   }
 }
 /* Desktops and laptops ----------- */
@@ -153,9 +176,9 @@
 
 .weekProjectDisplay_heading {
   width: 100vw;
-  background-color: var(--secondary-medium);
+  background-color: var(--secondary-bright);
   text-transform: uppercase;
-  color: var(--secondary-bright);
+  color: var(--secondary-dark);
   padding: 0.4rem;
   text-align: center;
   opacity: 0.7;
@@ -163,18 +186,31 @@
 
 /* template card */
 .projectCard {
-  width: 100%;
   text-align: center;
   background-color: white;
   padding: 1rem;
+  margin: 1rem;
+  background-color: var(--secondary-bright);
+  border-radius: 5px;
+  position: relative;
+}
+
+.projectCard > * {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .projectCard_image_div,
 .projectCard_image {
-  height: 58vw;
+  height: 54vw;
   /* width: 100vw; */
   background-color: darkgrey;
   object-fit: cover;
+}
+
+.projectCard_title {
+  background-color: white;
+  padding: 0.4rem;
 }
 
 /* iPads (portrait) ----------- */
@@ -182,10 +218,10 @@
   .projectCard_image_div,
   .projectCard_image {
     /* width: 60vw; */
-    height: 14vw;
+    height: 11vw;
   }
   .projectCard {
-    width: 24vw;
+    width: 20vw;
   }
   .weekProjectDisplay_projectBoard {
     flex-direction: row;
@@ -196,10 +232,10 @@
   .projectCard_image_div,
   .projectCard_image {
     /* width: 24vw; */
-    height: 14vw;
+    height: 11vw;
   }
   .projectCard {
-    width: 24vw;
+    width: 20vw;
   }
   .weekProjectDisplay_projectBoard {
     flex-direction: row;
@@ -241,19 +277,20 @@
 
 /* collaborator image github link */
 
-.projectCard_colaborators--link {
-  position: absolute;
-  width: 100%;
-  left: 0;
-  top: 0;
-  line-height: 15vw;
-  opacity: 0;
-  color: whitesmoke;
-  transition: all 0.3s ease 0s;
+.projectCard_imageLink_description {
+  color: var(--secondary-dark);
+  font-family: "Lato", sans-serif;
+  text-align: justify;
+  background-color: white;
+  padding: 0.6rem;
+  font-size: 0.8rem;
 }
 
-.projectCard_colaborators--div:hover .projectCard_colaborators--link {
-  opacity: 1;
+/* iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) {
+  .projectCard_imageLink_description {
+    font-size: 1rem;
+  }
 }
 
 /* github link button */
@@ -279,6 +316,21 @@
   background: none;
 }
 
+.projectCard__delete_button {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.projectCard__delete_button:hover {
+  transform: scale(1.5);
+}
+
 /* login form */
 
 .ProjectsForm {
@@ -289,6 +341,7 @@
   min-height: 60vh;
   border: 2px solid black;
   border-radius: 5px;
+  justify-content: space-between;
 }
 
 .ProjectsForm__form {
@@ -301,6 +354,38 @@
 .ProjectsForm__form > * {
   padding: 0.2rem;
   margin: 0.6rem;
+}
+
+.ProjectsForm button {
+  margin-top: 1rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-color: whitesmoke;
+  color: black;
+  transition: 0.2s ease-in-out;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: 2px solid whitesmoke;
+  border-radius: 5px;
+}
+
+.ProjectsForm button:disabled {
+  visibility: hidden;
+}
+
+.ProjectsForm button:hover {
+  background-color: black;
+  color: whitesmoke;
+  border: 2px solid whitesmoke;
+}
+
+#add_project_button {
+  max-height: 4rem;
+  min-width: 6rem;
+  align-self: center;
+  padding: 1rem;
+  margin-top: 0;
 }
 
 .hiddenForm {
@@ -331,6 +416,7 @@
   .ProjectsForm {
     width: 80vw;
     flex-direction: row;
+    justify-content: space-evenly;
   }
   .ProjectsForm__form {
     max-width: 30vw;

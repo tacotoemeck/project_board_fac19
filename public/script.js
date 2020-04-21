@@ -29,7 +29,6 @@ const getColaborators = (repo) =>
 
 const selectRepo = (array, repo_name) => {
   // create a main template here
-  console.log(array);
   let filterArray = array.filter((repo) => repo.name === repo_name);
   let docFrag = projectCardTemplate.content.cloneNode(true);
   // project name
@@ -41,27 +40,52 @@ const selectRepo = (array, repo_name) => {
   return filterArray;
 };
 
+// const createUserThumbFromTemplate = (arr, repo_name) => {
+//   // let docFrag = projectCardTemplate.content.cloneNode(true);
+//   arr.forEach((user) => {
+//     // create a parent div
+//     let collaboratorsDiv = document.createElement("DIV");
+//     collaboratorsDiv.classList.add("projectCard_colaborators--div");
+//     // create an image and append to parent div
+//     let thumbImg = document.createElement("img");
+//     thumbImg.src = user.avatar_url;
+//     thumbImg.classList.add("projectCard_colaborators--image");
+//     collaboratorsDiv.appendChild(thumbImg);
+//     // create a hover on link and append to parent div
+//     let thumbLink = document.createElement("a");
+//     thumbLink.innerText = `GITHUB`;
+//     thumbLink.setAttribute("href", `${user.html_url}`);
+//     thumbLink.classList.add("projectCard_colaborators--link");
+//     collaboratorsDiv.appendChild(thumbLink);
+//     // append parent div ,
+//     document
+//       .querySelector(`[data-title=${repo_name}]`)
+//       .children[4].appendChild(collaboratorsDiv);
+//   });
+// };
+
 const createUserThumbFromTemplate = (arr, repo_name) => {
   // let docFrag = projectCardTemplate.content.cloneNode(true);
   arr.forEach((user) => {
     // create a parent div
     let collaboratorsDiv = document.createElement("DIV");
     collaboratorsDiv.classList.add("projectCard_colaborators--div");
+    // create a hover on link and append to parent div
+    let thumbLink = document.createElement("a");
+    thumbLink.setAttribute("href", `${user.html_url}`);
+    thumbLink.classList.add("projectCard_colaborators--link");
+    // collaboratorsDiv.appendChild(thumbLink);
     // create an image and append to parent div
     let thumbImg = document.createElement("img");
     thumbImg.src = user.avatar_url;
     thumbImg.classList.add("projectCard_colaborators--image");
-    collaboratorsDiv.appendChild(thumbImg);
-    // create a hover on link and append to parent div
-    let thumbLink = document.createElement("a");
-    thumbLink.innerText = `GITHUB`;
-    thumbLink.setAttribute("href", `${user.html_url}`);
-    thumbLink.classList.add("projectCard_colaborators--link");
+    thumbLink.appendChild(thumbImg);
     collaboratorsDiv.appendChild(thumbLink);
-    // append parent div
+
+    // append parent div ,
     document
       .querySelector(`[data-title=${repo_name}]`)
-      .children[3].appendChild(collaboratorsDiv);
+      .children[4].appendChild(collaboratorsDiv);
   });
 };
 
@@ -70,7 +94,6 @@ function showCollaborators(name) {
   let result;
   return (result = getUser("fac19")
     .then((res) => {
-      console.log(res);
       return getRepos(res);
     })
     .then((repo_array) => selectRepo(repo_array, name)[0].contributors_url)
@@ -161,8 +184,8 @@ add_repo_button.addEventListener("click", () => {
   // push collaborators into nested array within repo obj
   project_collaborators.forEach((collab) => {
     let collaborator_obj = {
-      github_img: collab.firstChild.src,
-      github_link: collab.lastChild.href,
+      github_img: collab.firstChild.firstChild.src,
+      github_link: collab.firstChild.href,
     };
     repo_obj.project_collaborators.push(collaborator_obj);
   });
