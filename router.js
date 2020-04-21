@@ -41,6 +41,10 @@ function router(request, response) {
     } else {
       loginGetHandler(request, response, true);
     }
+  } else if (url.includes("/delete-project")) {
+    authorization.checkIfAdminIsLoggedIn(request);
+    authorization.verifyPassword(request, response, deleteHandler);
+    // deleteHandler(request, response);
   } else if (url === "/login" && method === "POST") {
     loginPostHandler(request, response);
   } else if (url === "/logout") {

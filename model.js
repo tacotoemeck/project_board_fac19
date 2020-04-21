@@ -28,4 +28,11 @@ function getUser(user) {
     .then((res) => res.rows[0]);
 }
 
-module.exports = { saveRepo, getRepo, getUser };
+function deleteRepo(id) {
+  console.log(id);
+  return db.query("DELETE FROM projects WHERE ($1)=id", [id]);
+}
+
+module.exports = { saveRepo, getRepo, getUser, deleteRepo };
+
+// return db.query("DELETE FROM img_posts WHERE ($1)=id", [postId])
