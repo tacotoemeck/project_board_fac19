@@ -7,7 +7,7 @@ function sharedContent(content, loggedIn) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Learn Fetch & Promises</title>
+        <title>FAC19 Project Board</title>
         <link rel="stylesheet" href="./public/styles.css" />
         <link
           href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
@@ -17,8 +17,8 @@ function sharedContent(content, loggedIn) {
       <body>
         <nav class="navbar">
           <div class="navbar__logo"><img class="navbar__logoIMG" src="./public/img/fac19.jpeg"></div>
-          <div class="navbar__links">
-            <button class="navbar__links__menuButton">☰ MENU</button>
+          <div class="navbar__links" aria-expanded="false">
+            <button class="navbar__links__menuButton"><span aria-hidden>☰</span> MENU</button>
           </div>
           <div class="navbar_toggleMenu hidden">
             <h3>Learning outcome</h3>
