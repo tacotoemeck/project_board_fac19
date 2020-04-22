@@ -13,6 +13,7 @@ html {
   margin-top: 3rem;
   left: 0;
   font-size: 13px;
+  overflow-x: hidden;
 }
 
 /* iPads (portrait) ----------- */
@@ -65,18 +66,8 @@ html {
   font-family: "Lato", sans-serif;
 }
 
-.navbar__logo {
-  color: white;
-}
-
-.navbar__links__menuButton {
-  background-color: var(--secondary-dark);
-  color: var(--secondary-bright);
-  border: none;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding: 0.5rem;
-  cursor: pointer;
+.navbar__logoIMG {
+  height: 1.9rem;
 }
 
 .navbar__links__menuButton:hover {
@@ -88,6 +79,17 @@ html {
   color: var(--secondary-bright);
   margin-right: 3rem;
   border: none;
+}
+
+.navbar__links__menuButton {
+  background-color: var(--secondary-dark);
+  color: var(--secondary-bright);
+  border: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0.5rem;
+  cursor: pointer;
+  margin-right: 1rem;
 }
 
 .navbar__links--link {
@@ -111,16 +113,10 @@ html {
   right: 0;
   margin-top: 2.9rem;
   text-align: center;
-
-  /* visibility: visible;
-  opacity: 1;
-  transition: visibility 0s, opacity 0.1s ease-in; */
 }
 
 .hidden {
   display: none;
-  /* visibility: hidden;
-  opacity: 0; */
 }
 
 .navbar_toggleMenu > ul {
@@ -149,11 +145,109 @@ html {
     width: 50%;
     margin-right: 1rem;
   }
+  .navbar__links__menuButton {
+    padding-right: 3rem;
+  }
 }
 /* Desktops and laptops ----------- */
 @media only screen and (min-width: 1224px) {
   .navbar_toggleMenu {
     width: 25%;
+  }
+}
+/* ------header----------------- */
+
+.header {
+  font-family: "Lato", sans-serif;
+  padding: 0.5rem;
+  padding-right: 0.3rem;
+  margin-bottom: 3rem;
+}
+
+.header__title {
+  font-size: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  background-color: black;
+  color: white;
+}
+
+.header__subtitle {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.header__intro {
+  text-align: justify;
+  font-size: 0.8rem;
+  margin-bottom: 2.5rem;
+}
+
+.header__divider {
+  background-color: black;
+  width: 100%;
+  height: 2.2rem;
+}
+
+/* larger mobiles ----------- */
+@media only screen and (min-width: 268px) {
+  .header {
+    padding: 2rem;
+  }
+
+  .header__title {
+    font-size: 1.7rem;
+  }
+
+  .header__subtitle {
+    font-size: 1.2rem;
+  }
+
+  .header__intro {
+    font-size: 1rem;
+  }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-width: 768px) {
+  .header {
+    padding: 2.5rem;
+  }
+
+  .header__title {
+    font-size: 1.9rem;
+  }
+
+  .header__subtitle {
+    font-size: 1.4rem;
+  }
+
+  .header__intro {
+    font-size: 1.2rem;
+    padding: 0.5rem;
+  }
+}
+/* Desktops and laptops ----------- */
+@media only screen and (min-width: 1224px) {
+  .header {
+    padding: 4rem;
+  }
+
+  .header__title {
+    font-size: 2.1rem;
+  }
+
+  .header__subtitle {
+    font-size: 1.6rem;
+    margin-top: 4rem;
+  }
+
+  .header__intro {
+    font-size: 1.2rem;
+    margin-bottom: 5rem;
+    line-height: 1.9rem;
+    padding: 0.8rem;
   }
 }
 
@@ -299,12 +393,11 @@ html {
   width: 100%;
   box-sizing: border-box;
   border: none;
-  background: #404040;
+  background: var(--secondary-dark);
   color: #ffffff !important;
-  font-weight: 100;
-  padding: 10px;
+  padding: 11px;
   text-transform: uppercase;
-  border-radius: 6px;
+  border-radius: 3px;
   display: inline-block;
   text-align: center;
   transition: all 0.3s ease 0s;
@@ -312,8 +405,10 @@ html {
 }
 
 .projectCard_github:hover {
-  color: #404040 !important;
-  background: none;
+  padding: 10px;
+  color: var(--secondary-dark) !important;
+  background-color: var(--secondary-bright);
+  border: 1px solid var(--secondary-dark);
 }
 
 .projectCard__delete_button {
@@ -469,4 +564,15 @@ html {
     width: 60%;
     padding: 5rem;
   }
+}
+
+.footer {
+  font-family: "Lato", sans-serif;
+  background-color: black;
+  font-size: 1rem;
+  color: white;
+  height: 4vw;
+  text-align: center;
+  line-height: 4vw;
+  bottom: 0;
 }

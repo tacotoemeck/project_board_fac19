@@ -1,13 +1,13 @@
 // const script = require("../public/fetchAPI");
 
 function sharedContent(content, loggedIn) {
-  return `
+  return /*html*/ `
     <!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Learn Fetch & Promises</title>
+        <title>FAC19 Project Board</title>
         <link rel="stylesheet" href="./public/styles.css" />
         <link
           href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
@@ -16,9 +16,9 @@ function sharedContent(content, loggedIn) {
       </head>
       <body>
         <nav class="navbar">
-          <div class="navbar__logo">FAC</div>
-          <div class="navbar__links">
-            <button class="navbar__links__menuButton">☰ MENU</button>
+          <div class="navbar__logo"><img class="navbar__logoIMG" src="./public/img/fac19.jpeg"></div>
+          <div class="navbar__links" aria-expanded="false">
+            <button class="navbar__links__menuButton"><span aria-hidden>☰</span> MENU</button>
           </div>
           <div class="navbar_toggleMenu hidden">
             <h3>Learning outcome</h3>
@@ -51,9 +51,23 @@ function sharedContent(content, loggedIn) {
           </div>
         </nav>
 
+        <header class="header">
+          <h1 class="header__title">Project Gallery</h1>
+          <h3 class="header__subtitle">Founders And Coders FAC19</h3>
+          <p class="header__intro">"Founders and Coders is not your ordinary coding bootcamp.". We learn from other grads as well as from each other. 
+          The program has been carefully crafted by industry experts to deliver job-ready junior developers.  Every week we're tasked with a different project. 
+          Given user stories and acceptance criteria we have 1.5 days to deliver results. Each group is made of 3 members and a ScrumMaster. We use agile methodology 
+          in planning and execution with a strong focus on kanban boards but often experiment with other available tools. </p>
+          <div class="header__divider"></div>
+        </header>
+
         <div class="container">
           ${content}
         </div>
+
+        <footer class="footer">
+        <p>&copy; this site was developed with ❤️ by: <a href="https://github.com/tacotoemeck" class="footer__link">TomW</a> </p>
+        </footer>
 
         <template id="projectCardTemplate">
           <div class="projectCard">
