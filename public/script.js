@@ -191,7 +191,7 @@ add_repo_button.addEventListener("click", () => {
   });
   // add save to database logic
   objToForm(repo_obj);
-  // approach 2 - create a form
+
 });
 
 function objToForm(obj) {
